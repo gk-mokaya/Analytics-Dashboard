@@ -3,7 +3,6 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import os
-import shap
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.linear_model import LinearRegression
 import plotly.express as px 
@@ -162,20 +161,3 @@ style_metric_cards(background_color="##000000",border_left_color="#22ff00",borde
 st.metric(label="Projected Income is:", value = f' KSH.{prediction}', delta="Projected Gross Income based on Input Parameters")
 
 st.write('---')
-
-# Explaining the model's predictions using SHAP values
-# https://github.com/slundberg/shap
-explainer = shap.TreeExplainer(model)
-shap_values = explainer.shap_values(X)
-
-st.header('Feature Importance')
-fig,ax = plt.subplots()
-plt.title('Feature importance based on SHAP values')
-shap.summary_plot(shap_values, X)
-st.pyplot(fig)
-st.write('---')
-
-fig,ax = plt.subplots()
-plt.title('Feature importance based on SHAP values (Bar)')
-shap.summary_plot(shap_values, X, plot_type="bar")
-st.pyplot(fig, bbox_inches='tight')
