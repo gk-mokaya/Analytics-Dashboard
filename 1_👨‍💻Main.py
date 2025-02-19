@@ -16,3 +16,4 @@ st.markdown(""" <h3 style="color:#2200ff; font-size:60px"> REALTIME AUTOMATED AN
 # sidebar
 #logo
 st.sidebar.image("static/logod.png")
+1   

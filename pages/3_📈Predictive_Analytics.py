@@ -163,20 +163,20 @@ st.metric(label="Projected Income is:", value = f' KSH.{prediction}', delta="Pro
 
 st.write('---')
 
-# Bug fix
-st.set_option('deprecation.showPyplotGlobalUse', False)
+## Bug fix
+#st.set_option('deprecation.showPyplotGlobalUse', False)
 
-# Explaining the model's predictions using SHAP values
-# https://github.com/slundberg/shap
-explainer = shap.TreeExplainer(model)
-shap_values = explainer.shap_values(X)
+## Explaining the model's predictions using SHAP values
+## https://github.com/slundberg/shap
+#explainer = shap.TreeExplainer(model)
+#shap_values = explainer.shap_values(X)
 
-st.header('Feature Importance')
-plt.title('Feature importance based on SHAP values')
-shap.summary_plot(shap_values, X)
-st.pyplot(bbox_inches='tight')
-st.write('---')
+#t.header('Feature Importance')
+#plt.title('Feature importance based on SHAP values')
+#shap.summary_plot(shap_values, X)
+#st.pyplot(bbox_inches='tight')
+#st.write('---')
 
-plt.title('Feature importance based on SHAP values (Bar)')
-shap.summary_plot(shap_values, X, plot_type="bar")
-st.pyplot(bbox_inches='tight')
+#plt.title('Feature importance based on SHAP values (Bar)')
+#shap.summary_plot(shap_values, X, plot_type="bar")
+#st.pyplot(bbox_inches='tight')
