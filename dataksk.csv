@@ -1,4 +1,4 @@
-OrderID,Branch,City,Customer type,Gender,Product line,Unit price,Quantity,Tax 5%,Total,Date,Time,Payment,cogs,gross margin percentage,gross income,Rating
+OrderID,Branch,City,Customer type,Gender,Product line,Unitprice,Quantity,Tax 5%,Total,Date,Time,Payment,cogs,gross margin percentage,gross income,Rating
 176,B,Mandalay,Normal,Female,Electronic accessories,74.71,6,22.413,470.673,2019-01-01,19:07,Cash,448.26,4.761904762,22.413,6.7
 186,C,Naypyitaw,Normal,Female,Electronic accessories,63.22,2,6.322,132.762,2019-01-01,15:51,Cash,126.44,4.761904762,6.322,8.5
 236,A,Yangon,Member,Female,Electronic accessories,74.22,10,37.11,779.31,2019-01-01,14:42,Credit card,742.2,4.761904762,37.11,4.3

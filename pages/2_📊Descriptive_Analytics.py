@@ -6,7 +6,7 @@ import seaborn as sns
 import altair as alt 
 from matplotlib import pyplot as plt 
 from streamlit_extras.dataframe_explorer import dataframe_explorer
-
+import datetime
 # page configuration
 st.set_page_config(page_title="Descriptive analytics", page_icon= "📊", layout="wide")
 
@@ -19,16 +19,24 @@ df = pd.read_csv("dataksk.csv")
 with open('.streamlit/style.css') as f:
     st.markdown(f"<style> {f.read()}</style>", unsafe_allow_html=True)
 
+st.write('---')
+
 # sidebar
 #logo
 st.sidebar.image("static/logod.png")
+
+
 # datepicker
+today = datetime.date.today()
 with st.sidebar:
     st.title("Select date range to analyze")
-    start_date = st.date_input(label="Choose your start date")
+    start_date = st.date_input(label="Choose your start date",  max_value=today)
 with st.sidebar:
-    end_date = st.date_input(label="Choose your end date")
+    end_date = st.date_input(label="Choose your end date",max_value=today)
+
 st.error("Displaying descriptive analysis from date "+str(start_date)+ " to "+ str(end_date))
+
+st.write('---')
 
 # Filtering start_date and end_date
 df2 = df[(df["Date"]>=str(start_date)) & (df["Date"]<=str(end_date))]
@@ -39,7 +47,11 @@ with st.expander("Expand to apply filters on dataframe"):
 
 # plots
 
+st.write('---')
+
 st.title("Sales Performance Analysis")
+
+st.write('---')
 
 # perfomance metrics(min, max, mode)
 st.subheader("Data Metrics", divider="rainbow")
@@ -52,6 +64,8 @@ col1.metric(label="Total items Sold", value = df2["Quantity"].sum(), delta="Tota
 col2.metric(label="Total Cost of Goods", value = f" KSH.{df2["cogs"].sum():,.2f}", delta= f" Average Cost of Goods: Ksh.{df2["cogs"].mean():,.2f}")
 col3.metric(label="Total Gross Income", value = f" KSH.{df2["gross income"].sum():,.2f}", delta= f" Average profit per product: Ksh.{df2["gross income"].mean():,.2f}")
 col4.metric(label="Total TAX", value = df2["Tax 5%"].sum(), delta="Total amount tax paid (5% of income)")
+
+st.write('---')
 
 a1, a2, a3 = st.columns(3)
 with a1:
@@ -93,6 +107,8 @@ with a3:
     )
     st.altair_chart(bar_chart3, use_container_width=True)
 
+st.write('---')
+
     # Dot plot 
 b1,b2 = st.columns(2)
 
@@ -110,15 +126,18 @@ with b2:
     st.subheader("Product Sales distribution",divider="blue")
     sourceb2 = pd.DataFrame({
         "Product line": df2["Product line"],
-        "Unit price (Ksh)": df2["Unit price"],
+        "Unitprice (Ksh)": df2["Unitprice"],
         "Date":df2["Date"]
     })
     bar_chartb2 = alt.Chart(sourceb2).mark_bar().encode(
         x="month(Date):O",
-        y="sum(Unit price (Ksh)):Q",
+        y="sum(Unitprice (Ksh)):Q",
         color="Product line:N"
     )
     st.altair_chart(bar_chartb2,use_container_width=True)
+
+
+st.write('---')
 
 c1,c2 = st.columns(2)
 
@@ -142,3 +161,5 @@ with c2:
     ax.set_xlabel(feature)
     ax.set_ylabel('Frequency')
     st.pyplot(fig)
+
+st.write('---')
