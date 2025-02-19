@@ -3,7 +3,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import os
-# import shap
+import shap
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.linear_model import LinearRegression
 import plotly.express as px 
@@ -104,7 +104,7 @@ def user_input_features():
 
 
       with col2:
-        Productline = st.radio('Choose your Productline', ["Electronic accessories","Fashion accessories","Food and bevernumeric_Branchs","Health and beauty","Home and lifestyle","Sports and travel"])
+        Productline = st.radio('Choose your Productline', ["Electronic accessories","Fashion accessories","Food and beverages","Health and beauty","Home and lifestyle","Sports and travel"])
         numeric_Productline = Productline_dict[Productline]
 
         Payment = st.radio('numeric_Payment', ["Cash","Credit card","Ewallet"])
@@ -155,7 +155,7 @@ prediction = model.predict(df)
 
 st.write('---')
 
-st.header('Predicted Gross Income based on Specified ParametERS is;')
+st.header('Predicted Gross Income based on Specified Parameters is;')
 
 style_metric_cards(background_color="##000000",border_left_color="#22ff00",border_color="#0f00e8")
 
@@ -163,20 +163,19 @@ st.metric(label="Projected Income is:", value = f' KSH.{prediction}', delta="Pro
 
 st.write('---')
 
-## Bug fix
-#st.set_option('deprecation.showPyplotGlobalUse', False)
+# Explaining the model's predictions using SHAP values
+# https://github.com/slundberg/shap
+explainer = shap.TreeExplainer(model)
+shap_values = explainer.shap_values(X)
 
-## Explaining the model's predictions using SHAP values
-## https://github.com/slundberg/shap
-#explainer = shap.TreeExplainer(model)
-#shap_values = explainer.shap_values(X)
+st.header('Feature Importance')
+fig,ax = plt.subplots()
+plt.title('Feature importance based on SHAP values')
+shap.summary_plot(shap_values, X)
+st.pyplot(fig)
+st.write('---')
 
-#t.header('Feature Importance')
-#plt.title('Feature importance based on SHAP values')
-#shap.summary_plot(shap_values, X)
-#st.pyplot(bbox_inches='tight')
-#st.write('---')
-
-#plt.title('Feature importance based on SHAP values (Bar)')
-#shap.summary_plot(shap_values, X, plot_type="bar")
-#st.pyplot(bbox_inches='tight')
+fig,ax = plt.subplots()
+plt.title('Feature importance based on SHAP values (Bar)')
+shap.summary_plot(shap_values, X, plot_type="bar")
+st.pyplot(fig, bbox_inches='tight')
