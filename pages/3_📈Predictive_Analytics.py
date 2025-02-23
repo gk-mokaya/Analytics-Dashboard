@@ -55,7 +55,7 @@ kskdf["numeric_Customer"]=kskdf["Customer type"].map(Customer_dict)
 Gender_dict = {"Male": 0, "Female":1}
 kskdf["numeric_Gender"]=kskdf["Gender"].map(Gender_dict)
 
-Productline_dict = {"Electronic accessories": 0, "Fashion accessories": 1, "Food and bevernumeric_Branchs": 2, "Health and beauty": 3, "Home and lifestyle": 4, "Sports and travel":5}
+Productline_dict = {"Electronic accessories": 0, "Fashion accessories": 1, "Food and beverages": 2, "Health and beauty": 3, "Home and lifestyle": 4, "Sports and travel":5}
 kskdf["numeric_Productline"]=kskdf["Product line"].map(Productline_dict)
 
 Payment_dict = {"Cash": 0, "Credit card":1, "Ewallet":2}
