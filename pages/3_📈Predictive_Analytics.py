@@ -13,11 +13,15 @@ from streamlit_extras.dataframe_explorer import dataframe_explorer
 from sklearn import datasets
 from streamlit_extras.metric_cards import style_metric_cards
 
+# Redirect to login if not authenticated
+if "user_email" not in st.session_state or st.session_state.user_email is None:
+    st.warning("You must be logged in to access this page.")
+    st.stop()
 
 # pnumeric_Branch configuration
 st.set_page_config(page_title="Descriptive analytics", page_icon= "📈", layout="wide")
 
-st.markdown(""" <h3 style="color:#2200ff; font-size:60px"> REALTIME INCOME PREDICTION MODEL </h3>""", unsafe_allow_html=True)
+st.markdown(""" <h3 style="color:#2200ff; font-size:60px"> INCOME PREDICTION MODEL </h3>""", unsafe_allow_html=True)
 
 # sidebar
 #logo
@@ -32,14 +36,14 @@ st.write('---')
 
 # Loading the  Dataset
 
-kskdf = pd.read_csv("dataksk.csv")
+kskdf = pd.read_csv("dataksk1.csv")
 
 #Dropping null values
-kskdf.dropna(inplace=True)
+#kskdf.dropna(inplace=True)
 
 kskdf.info()
 
-#Branchulation and Gender are not numerical variables, lets convert them to numerical ones in order to 
+#Branch, city,customer,productline, payment and Gender are not numerical variables, lets convert them to numerical ones in order to 
 #apply Multiple Linear Regression using them
 
 
@@ -74,10 +78,6 @@ X = kskdf[['numeric_Branch', 'numeric_City', 'numeric_Customer','numeric_Gender'
 Y = kskdf['gross income']
 
 
-# st.write(X)
-
- #Sidebar
- #Header of Specify Input Parameters
 st.write('---')
 st.subheader('Specify Your Input Parameters')
 st.write('---')

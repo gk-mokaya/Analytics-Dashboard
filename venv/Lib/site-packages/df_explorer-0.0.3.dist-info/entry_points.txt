@@ -1,0 +1,3 @@
+[console_scripts]
+dfexplorer = df_explorer.app:main
+

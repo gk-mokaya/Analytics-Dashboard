@@ -7,10 +7,16 @@ import altair as alt
 from matplotlib import pyplot as plt 
 from streamlit_extras.dataframe_explorer import dataframe_explorer
 import datetime
+
+# Redirect to login if not authenticated
+if "user_email" not in st.session_state or st.session_state.user_email is None:
+    st.warning("You must be logged in to access this page.")
+    st.stop()
+
 # page configuration
 st.set_page_config(page_title="Descriptive analytics", page_icon= "📊", layout="wide")
 
-st.markdown(""" <h3 style="color:#2200ff; font-size:60px"> REALTIME ONLINE DESCRIPTIVE ANALYTICS  </h3>""", unsafe_allow_html=True)
+st.markdown(""" <h3 style="color:#2200ff; font-size:60px"> DESCRIPTIVE ANALYTICS  </h3>""", unsafe_allow_html=True)
 
 # loading ksk supermarket dataset
 df = pd.read_csv("dataksk.csv")
@@ -61,8 +67,8 @@ style_metric_cards(background_color="##000000",border_left_color="#22ff00",borde
 
 col1,col2,col3,col4 = st.columns(4)
 col1.metric(label="Total items Sold", value = df2["Quantity"].sum(), delta="Total count of product sold so far")
-col2.metric(label="Total Cost of Goods", value = f" KSH.{df2["cogs"].sum():,.2f}", delta= f" Average Cost of Goods: Ksh.{df2["cogs"].mean():,.2f}")
-col3.metric(label="Total Gross Income", value = f" KSH.{df2["gross income"].sum():,.2f}", delta= f" Average profit per product: Ksh.{df2["gross income"].mean():,.2f}")
+col2.metric(label="Total Cost of Goods", value = f" KSH.{df2['cogs'].sum():,.2f}", delta= f" Average Cost of Goods: Ksh.{df2['cogs'].mean():,.2f}")
+col3.metric(label="Total Gross Income", value = f" KSH.{df2['gross income'].sum():,.2f}", delta= f" Average profit per product: Ksh.{df2['gross income'].mean():,.2f}")
 col4.metric(label="Total TAX", value = df2["Tax 5%"].sum(), delta="Total amount tax paid (5% of income)")
 
 st.write('---')
@@ -160,6 +166,7 @@ with c2:
     ax.set_title(f'Histogram of {feature}')
     ax.set_xlabel(feature)
     ax.set_ylabel('Frequency')
+    plt.xticks(rotation=45)
     st.pyplot(fig)
 
 st.write('---')

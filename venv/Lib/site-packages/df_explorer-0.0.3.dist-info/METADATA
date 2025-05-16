@@ -1,0 +1,20 @@
+Metadata-Version: 2.0
+Name: df-explorer
+Version: 0.0.3
+Summary: "Dataframe explorer"
+Home-page: UNKNOWN
+Author: UNKNOWN
+Author-email: UNKNOWN
+License: UNKNOWN
+Description-Content-Type: UNKNOWN
+Platform: UNKNOWN
+Requires-Dist: pandas
+Requires-Dist: feather-format
+Requires-Dist: psutil
+Requires-Dist: docopt
+Requires-Dist: flask (==0.12.2)
+Requires-Dist: werkzeug (==0.12.2)
+
+UNKNOWN
+
+
