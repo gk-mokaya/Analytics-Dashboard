@@ -8,10 +8,7 @@ from matplotlib import pyplot as plt
 from streamlit_extras.dataframe_explorer import dataframe_explorer
 import datetime
 
-# Redirect to login if not authenticated
-if "user_email" not in st.session_state or st.session_state.user_email is None:
-    st.warning("You must be logged in to access this page.")
-    st.stop()
+
 
 # page configuration
 st.set_page_config(page_title="Descriptive analytics", page_icon= "📊", layout="wide")

@@ -9,7 +9,7 @@ from streamlit_extras.dataframe_explorer import dataframe_explorer
 from streamlit_extras.metric_cards import style_metric_cards
 import os
 import streamlit as st
-from supabase import create_client, Client
+
 
 
 
@@ -23,10 +23,7 @@ st.markdown(""" <h3 style="color:#2200ff; font-size:60px"> AUTOMATED ANALYTICS D
 st.sidebar.image("static/logod.png")
 
 
-# Initialize Supabase client
-supabase_url = "https://gfxsohsucovpiqwgkups.supabase.co"
-supabase_key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdmeHNvaHN1Y292cGlxd2drdXBzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDYzMDk0NDAsImV4cCI6MjA2MTg4NTQ0MH0.mBPkKdqMA_UHHAqYLXFX6h2LcPRlM6is8ePlklTIvXQ"
-supabase: Client = create_client(supabase_url, supabase_key)
+
 
 
 def sign_up(email, password):
