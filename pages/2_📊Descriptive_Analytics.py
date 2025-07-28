@@ -37,6 +37,7 @@ with st.sidebar:
 with st.sidebar:
     end_date = st.date_input(label="Choose your end date",max_value=today)
 
+st.error("Available data in our database for Demo is from January 2024 to February 2025: Thus, please select a date range between these two dates to analyze the data.")
 st.error("Displaying descriptive analysis from date "+str(start_date)+ " to "+ str(end_date))
 
 st.write('---')
