@@ -1,5 +1,7 @@
 # Automated Analytics Dashboard
 gk-mokaya |kevinmokaya001@gmail.com |+254 797 252 133
+=====================================
+# demo url for dashboard: https://kskanalytics.streamlit.app/Descriptive_Analytics
 
 ## Description
 This project is an Automated Analytics Dashboard built with Streamlit. It provides a user-friendly interface for data-driven decision making through descriptive and predictive analytics, along with an AI-powered chatbot for interactive data queries. The app includes user authentication powered by Supabase.
